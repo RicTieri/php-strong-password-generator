@@ -1,7 +1,24 @@
 <?php
-  function generatePassword($length){
-    $charPool = 'qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890`~!@#$%^&*()_-+={[}}|\:;"\'.?,/';
+  function getCharPool($number, $letter , $symbol){
+    $charPool ='qwertyuiopasdfghjklzxcvbnm';
 
+    if(($number)){
+      $charPool .= '1234567890';
+    }
+
+    if(($letter)){
+      $charPool .= 'QWERTYUIOPASDFGHJKLZXCVBNM';
+    }
+
+    if(($symbol)){
+      $charPool .= '`~!@#$%^&*()_-+={[}}|\:;"\'.?,/';
+    }
+
+    return $charPool;
+
+  }
+
+  function generatePassword($length, $repeat_char , $charPool){
     if($length > $charPool || $length < 6 ){ 
       return false;
     }
@@ -11,7 +28,10 @@
     while( strlen($psw) < $length){
       $random = $charPool[random_int(0, strlen($charPool) - 1)];
       $psw .= $random;
-      $charPool = str_replace( $random , '' , $charPool);
+
+      if($repeat_char){
+        $charPool = str_replace( $random , '' , $charPool);
+      }
     }
 
     return $psw;

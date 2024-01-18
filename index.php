@@ -59,7 +59,7 @@ session_start();
                   </div>
                   <div>
                     <input type="checkbox" class="form-check-input me-2" id="letter" name="letter">
-                    <label class="form-check-label" for="letter">Lettere</label>
+                    <label class="form-check-label" for="letter">Maiuscole</label>
                   </div>
                   <div>
                     <input type="checkbox" class="form-check-input me-2" id="number" name="number">

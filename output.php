@@ -4,9 +4,14 @@ session_start();
 ?>
 
 <?php 
-  if (isset($_GET['length'])) {
-    $_SESSION['length'] = $_GET['length'];
-  } ?>
+    $_SESSION['length'] = $_GET['length']; 
+    $_SESSION['repeat_char'] = is_numeric($_GET['repeat_char']); 
+    $_SESSION['letter'] = isset($_GET['letter']); 
+    $_SESSION['number'] = isset($_GET['number']); 
+    $_SESSION['symbol'] = isset($_GET['symbol']); 
+    // echo var_dump($_SESSION);
+    // echo var_dump($_GET);
+  ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -36,11 +41,11 @@ session_start();
   <main>
     <div class="container-fluid px-5">
       <div class="row">
-        <?php if(generatePassword($_SESSION['length'])){ ?>
+        <?php if(generatePassword($_SESSION['length'] , $_SESSION['repeat_char'] , getCharPool($_SESSION['number'],$_SESSION['letter'],$_SESSION['symbol']))){ ?>
           <div class="col-12">
             <div class="alert alert-light" role="alert">
               <h3>La password generata è:
-                <?php echo generatePassword($_SESSION['length'])?>
+                <?php echo generatePassword($_SESSION['length'] , $_SESSION['repeat_char'] , getCharPool($_SESSION['number'],$_SESSION['letter'],$_SESSION['symbol']))?>
               </h3>
             </div>
           </div>
