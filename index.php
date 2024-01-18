@@ -1,3 +1,7 @@
+<?php
+include_once __DIR__  ."/php_partials/function.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -73,11 +77,15 @@
               </form>
           </div>
 
+          <?php if(isset($_GET['length'])){ ?>
+
           <div class="card col-12 px-3 py-4">
               <h3>La password generata è:
                 <?php echo generatePassword($_GET['length'])?>
               </h3>
           </div>
+
+          <?php } ?>
         </div>
       </div>
     </div>
@@ -86,17 +94,3 @@
 
 </html>
 
-<?php
-  function generatePassword($length){
-    $charPool = 'qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890`~!@#$%^&*()_-+={[}}|\:;"\'.?,/';
-    $psw = '';
-
-    while( strlen($psw) < $length){
-      $random = $charPool[random_int(0, strlen($charPool))];
-      $psw .= $random;
-      $charPool = str_replace( $random , '' , $charPool);
-    }
-
-    return $psw;
-  };
-?>
