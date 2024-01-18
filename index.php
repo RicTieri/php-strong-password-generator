@@ -32,7 +32,7 @@
           </div>
         </div>
         <div class="col-12">
-          <div class="card col-12 px-3 py-4">
+          <div class="card col-12 px-3 py-4 mb-3">
               <form action="./index.php" method="GET" class="row">
                 <div class="col-7">
                   <div class="mb-5 pb-5">
@@ -50,11 +50,11 @@
                     <input type="number" class="form-control" id="length" name="length">
                   </div>
                   <div class="form-check">
-                    <input class="form-check-input" type="radio" name="repeat_char" id="repeat_char">
+                    <input class="form-check-input" type="radio" name="repeat_char" id="repeat_char" value="1" checked>
                     <label class="form-check-label" for="repeat_char">Si</label>
                   </div>
                   <div class="form-check mb-3">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                    <input class="form-check-input" type="radio" name="repeat_char" id="repeat_char" value="0">
                     <label class="form-check-label" for="flexRadioDefault2">No</label>
                   </div>
                   <div>
@@ -72,6 +72,12 @@
                 </div>
               </form>
           </div>
+
+          <div class="card col-12 px-3 py-4">
+              <h3>La password generata è:
+                <?php echo generatePassword($_GET['length'])?>
+              </h3>
+          </div>
         </div>
       </div>
     </div>
@@ -79,3 +85,18 @@
 </body>
 
 </html>
+
+<?php
+  function generatePassword($length){
+    $charPool = 'qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890`~!@#$%^&*()_-+={[}}|\:;"\'.?,/';
+    $psw = '';
+
+    while( strlen($psw) < $length){
+      $random = $charPool[random_int(0, strlen($charPool))];
+      $psw .= $random;
+      $charPool = str_replace( $random , '' , $charPool);
+    }
+
+    return $psw;
+  };
+?>
