@@ -1,5 +1,6 @@
 <?php
 include_once __DIR__  ."/php_partials/function.php";
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -31,13 +32,8 @@ include_once __DIR__  ."/php_partials/function.php";
     <div class="container-fluid px-5">
       <div class="row">
         <div class="col-12">
-          <div class="alert alert-primary" role="alert">
-            Nessun parametro valido inserito
-          </div>
-        </div>
-        <div class="col-12">
           <div class="card col-12 px-3 py-4 mb-3">
-              <form action="./index.php" method="GET" class="row">
+              <form action="./output.php" method="GET" class="row">
                 <div class="col-7">
                   <div class="mb-5 pb-5">
                     <label for="length" class="form-label mb-3 d-block">Lunghezza password:</label>
@@ -76,16 +72,6 @@ include_once __DIR__  ."/php_partials/function.php";
                 </div>
               </form>
           </div>
-
-          <?php if(isset($_GET['length'])){ ?>
-
-          <div class="card col-12 px-3 py-4">
-              <h3>La password generata è:
-                <?php echo generatePassword($_GET['length'])?>
-              </h3>
-          </div>
-
-          <?php } ?>
         </div>
       </div>
     </div>

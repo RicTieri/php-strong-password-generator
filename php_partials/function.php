@@ -3,7 +3,7 @@
     $charPool = 'qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890`~!@#$%^&*()_-+={[}}|\:;"\'.?,/';
 
     if($length > $charPool || $length < 6 ){ 
-      return 'lunghezza non supportata';
+      return false;
     }
 
     $psw = '';
